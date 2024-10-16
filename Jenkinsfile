@@ -4,7 +4,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout our repository
-                git url: https://github.com/kevmach/Google-APIs-with-RestAssured.git 
+               git url: 'https://github.com/kevmach/Google-APIs-with-RestAssured.git'
+ 
             }
         }
         stage('Run Tests') {
