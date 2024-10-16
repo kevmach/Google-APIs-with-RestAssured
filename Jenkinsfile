@@ -4,16 +4,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout our repository
-                https://github.com/kevmach/Google-APIs-with-RestAssured.git, branch: 'master'
+                git url: https://github.com/kevmach/Google-APIs-with-RestAssured.git 
             }
         }
         stage('Run Tests') {
-    steps {
-        // Run your API tests using Maven
-        sh 'mvn clean test'
-    }
-}
-
+            steps {
+                // Run your API tests using Maven
+                sh 'mvn clean test'
+            }
         }
     }
     post {
@@ -23,14 +21,14 @@ pipeline {
         }
         success {
             mail(
-                to: 'kelvinmachinda6@gmail.com',
+                to: 'degen_kev@proton.me', 
                 subject: "Daily API Test Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "Tests passed! Check details: ${env.BUILD_URL}"
             )
         }
         failure {
             mail(
-                to: 'kelvinmachinda6@gmail.com',
+                to: 'degen_kev@proton.me', 
                 subject: "API Test Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "Tests failed. Check logs: ${env.BUILD_URL}"
             )
